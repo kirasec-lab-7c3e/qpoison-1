@@ -1,0 +1,16 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - "#approved-reviews-by>=1"
+    merge_conditions:
+      - check-success=ci-gate
+    allow_inplace_checks: false
+    batch_size: 1
+
+pull_request_rules:
+  - name: auto queue
+    conditions:
+      - "#approved-reviews-by>=1"
+    actions:
+      queue:
+        name: default
