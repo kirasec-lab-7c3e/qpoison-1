@@ -5,7 +5,6 @@ queue_rules:
       - label=ready
     merge_conditions:
       - check-success=ci-gate
-    allow_inplace_checks: false
     batch_size: 1
 
 pull_request_rules:
