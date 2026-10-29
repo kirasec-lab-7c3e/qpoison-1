@@ -1,9 +1,17 @@
+queue_rules:
+  - name: default
+    merge_method: fast-forward
+    queue_conditions:
+      - label=ready
+    merge_conditions:
+      - check-success=ci-gate
+    allow_inplace_checks: false
+    batch_size: 1
+
 pull_request_rules:
-  - name: kirasec botacct probe
+  - name: auto queue
     conditions:
-      - base=main
-      - label=kirasec-botacct
+      - label=ready
     actions:
-      comment:
-        message: "KIRASEC-BOTACCT-PROBE-MARKER"
-        bot_account: kirasec-research1
+      queue:
+        name: default
